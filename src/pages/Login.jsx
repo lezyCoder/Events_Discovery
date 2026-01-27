@@ -34,8 +34,8 @@ const Login = () => {
 
   return (
     <div className='login-page w-full h-full bg-gray-600 '>
-      <div className="login-form w-full h-full flex items-center justify-center">
-        <form action="" className=' flex flex-col items-center gap-4 border border-gray-800 rounded w-1/4 h-54 p-4 max-w-md  ' onSubmit={(e) => loginUser(e)}>
+      <div className="login-form w-full h-full flex items-center justify-center bg-[url(https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-no-repeat ">
+        <form action="" className='opacity-85 bg-gray-100 flex flex-col items-center gap-4 border border-gray-800 rounded w-1/4 h-58 p-4 max-w-md  ' onSubmit={(e) => loginUser(e)}>
           <input type="email" placeholder='Enter email' required className='border-b outline-none p-2 w-full' value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder='Enter password' required className='border-b outline-none p-2 w-full' value={password} onChange={(e) => setPassword(e.target.value)} />
           <button className='p-2 bg-black text-amber-100 rounded w-full'>Login</button>
