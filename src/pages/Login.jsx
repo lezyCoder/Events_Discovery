@@ -1,4 +1,4 @@
-import { app } from "../Firebase/Config"
+import { app } from "../Store/Firebase/Config"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { useEffect, useState } from "react";
 const auth = getAuth(app);
@@ -35,7 +35,7 @@ const Login = () => {
   return (
     <div className='login-page w-full h-full bg-gray-600 '>
       <div className="login-form w-full h-full flex items-center justify-center">
-        <form action="" className=' flex flex-col items-center gap-4 border border-gray-800 rounded w-1/4 h-54 p-3 ' onSubmit={(e) => loginUser(e)}>
+        <form action="" className=' flex flex-col items-center gap-4 border border-gray-800 rounded w-1/4 h-54 p-4 max-w-md  ' onSubmit={(e) => loginUser(e)}>
           <input type="email" placeholder='Enter email' required className='border-b outline-none p-2 w-full' value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder='Enter password' required className='border-b outline-none p-2 w-full' value={password} onChange={(e) => setPassword(e.target.value)} />
           <button className='p-2 bg-black text-amber-100 rounded w-full'>Login</button>
