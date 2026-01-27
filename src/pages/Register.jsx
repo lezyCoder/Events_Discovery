@@ -21,9 +21,9 @@ const Register = () => {
 
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            console.log("user", userCredential.user)
+            // console.log("user", userCredential.user)
             resetFields();
-            navigate("/login");
+            navigate("/login", {state:{ email, password }});
         } catch (error) {
             alert(error.message);
         }
@@ -35,7 +35,7 @@ const Register = () => {
     function resetFields() {
         setEmail("")
         setPassword("");
-         setConfirmPassword("");
+        setConfirmPassword("");
     }
 
     return (

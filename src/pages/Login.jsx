@@ -1,14 +1,18 @@
 import { app } from "../Store/Firebase/Config"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 const auth = getAuth(app);
 
 
 
 const Login = () => {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState();
+  const navigate = useNavigate()
+  const location = useLocation();
+
+  const { email: navEmail, password: navPassword } = location.state || []
+  const [email, setEmail] = useState(navEmail || "")
+  const [password, setPassword] = useState(navPassword || "");
 
   //================ Login User ==================
   const loginUser = (e) => {
@@ -19,6 +23,7 @@ const Login = () => {
         const user = userCredential.user;
         // ===========after login navigate to home page ====================
         console.log(user)
+        navigate('/')
         resetFields()
       })
       .catch((error) => {
