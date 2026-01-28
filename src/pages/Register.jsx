@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
-import { app } from "../Store/Firebase/Config"
+import { registerWithEmail } from "../Store/Features/auth/AuthService";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { authStart, authFailure } from "../Store/Features/auth/AuthSlice"
 
-const auth = getAuth(app)
 
 const Register = () => {
     const [email, setEmail] = useState("")
@@ -11,32 +10,29 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState("")
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const { loading, error } = useSelector(state => state.auth);
+
     const registerUser = async (e) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
-            alert("Password mismatch");
+            dispatch(authFailure("Passwords don't match"));
             return;
         }
-
+        dispatch(authStart());
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            // console.log("user", userCredential.user)
-            resetFields();
-            navigate("/login", {state:{ email, password }});
+            await registerWithEmail(email, password);
+            navigate("/login", { state: { email, password } });
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
         } catch (error) {
-            alert(error.message);
+            dispatch(authFailure(error.message));
         }
     };
 
 
-
-    // ============== Resetting Input Fields ==========
-    function resetFields() {
-        setEmail("")
-        setPassword("");
-        setConfirmPassword("");
-    }
 
     return (
         <div className='register-page w-full h-full bg-gray-600 '>
@@ -45,10 +41,13 @@ const Register = () => {
                     <input type="email" placeholder='Enter email' required className='border-b outline-none p-2 w-full' value={email} onChange={(e) => setEmail(e.target.value)} />
                     <input type="password" placeholder='Enter password' required className='border-b outline-none p-2 w-full' value={password} onChange={(e) => setPassword(e.target.value)} />
                     <input type="password" placeholder='confirm password' required className='border-b outline-none p-2 w-full' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                    <button className="p-2 bg-black text-amber-100 rounded w-full
-  transition-transform duration-200 ease-out
-  hover:cursor-pointer hover:bg-gray-900 hover:scale-[1.02]">
-                        Register
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
+
+                    <button
+                        className="p-2 bg-black text-amber-100 rounded w-full transition-transform duration-200 ease-out hover:cursor-pointer hover:bg-gray-900 hover:scale-[1.02]"
+                        disabled={loading}
+                    >
+                        {loading ? "Registering..." : "Register"}
                     </button>
 
                 </form>

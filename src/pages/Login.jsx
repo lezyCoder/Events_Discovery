@@ -1,42 +1,35 @@
-import { app } from "../Store/Firebase/Config"
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
-const auth = getAuth(app);
 
+import { loginWithEmail } from "../Store/Features/auth/AuthService";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router";
+import {authStart, authFailure} from "../Store/Features/auth/AuthSlice"
 
 
 const Login = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const location = useLocation();
+  const { loading, error } = useSelector(state => state.auth);
 
   const { email: navEmail, password: navPassword } = location.state || []
   const [email, setEmail] = useState(navEmail || "")
   const [password, setPassword] = useState(navPassword || "");
 
   //================ Login User ==================
-  const loginUser = (e) => {
-    e.preventDefault()
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        // ===========after login navigate to home page ====================
-        console.log(user)
-        navigate('/')
-        resetFields()
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  }
-
-  // ============== Resetting Input Fields ==========
-  function resetFields() {
-    setEmail("")
-    setPassword("");
-  }
+  const loginUser = async (e) => {
+    e.preventDefault();
+    dispatch(authStart());
+    try {
+      const userEmail = await loginWithEmail(email, password);
+      dispatch(loginSuccess(userEmail));
+      navigate('/');
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      dispatch(authFailure(error.message));
+    }
+  };
 
   return (
     <div className='login-page w-full h-full bg-gray-600 '>
@@ -44,10 +37,12 @@ const Login = () => {
         <form action="" className='opacity-85 bg-gray-100 flex flex-col items-center gap-4 border border-gray-800 rounded w-1/4  p-4 max-w-md  ' onSubmit={(e) => loginUser(e)}>
           <input type="email" placeholder='Enter email' required className='border-b outline-none p-2 w-full' value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder='Enter password' required className='border-b outline-none p-2 w-full' value={password} onChange={(e) => setPassword(e.target.value)} />
-          <button className="p-2 bg-black text-amber-100 rounded w-full
-  transition-transform duration-200 ease-out
-  hover:cursor-pointer hover:bg-gray-900 hover:scale-[1.02]">
-            Login
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          <button
+            className="p-2 bg-black text-amber-100 rounded w-full transition-transform duration-200 ease-out hover:cursor-pointer hover:bg-gray-900 hover:scale-[1.02]"
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
           <Link to={"/register"}>Don't have account ?</Link>
         </form>
