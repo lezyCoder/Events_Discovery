@@ -5,6 +5,7 @@ import Login from "./pages/Login"
 import Home from "./pages/Home"
 import ProtectedRoutes from "./Routes/ProtectedRoutes"
 import Navbar from "./Navbar/Navbar"
+import Footer from "./Footer/Footer"
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </div>
   )
 }
