@@ -2,7 +2,7 @@ import { registerWithEmail } from "../Store/Features/auth/AuthService";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { authStart, authFailure } from "../Store/Features/auth/AuthSlice"
-
+import { useState } from "react"
 
 const Register = () => {
     const [email, setEmail] = useState("")
