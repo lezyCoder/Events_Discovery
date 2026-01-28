@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+:root {
+    --backgroundColor: #FAF3E1;
+    --buttonsColor: #FA8112;
+    --text-primary: #222222;
+    --text-secondary: #D9C79A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--backgroundColor);
+    scroll-behavior: smooth;
+}
