@@ -14,8 +14,8 @@ const Navbar = () => {
             : "hover:underline underline-offset-8 decoration-[#f08b2c]";
 
     return (
-        <div className="w-full border-b border-b-gray-250">
-            <nav className="h-16 px-6 max-w-7xl mx-auto flex items-center justify-between lg:justify-around">
+        <div className="w-full  border-b border-b-gray-250">
+            <nav className="h-16  px-6 border mx-auto max-w-7xl flex items-center justify-between lg:justify-evenly">
 
                 {/* Logo */}
                 <Link to="/"><h1 className="text-2xl font-thin">Planora</h1></Link>

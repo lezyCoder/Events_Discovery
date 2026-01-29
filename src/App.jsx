@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import ProtectedRoutes from "./Routes/ProtectedRoutes"
 import Navbar from "./Navbar/Navbar"
 import Footer from "./Footer/Footer"
+import Events from "./pages/Events"
 
 const App = () => {
 
@@ -14,11 +15,12 @@ const App = () => {
       <Navbar />
       <Routes>
 
-        <Route element={<ProtectedRoutes />} >
+        {/* <Route element={<ProtectedRoutes />} > */}
           <Route path="/" element={<Home />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+          <Route path="/events" element={<Events />} />
+        {/* </Route> */}
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} /> */}
       </Routes>
       <Footer />
     </div>
