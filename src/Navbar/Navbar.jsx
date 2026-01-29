@@ -1,7 +1,7 @@
 import { MdSearch } from "react-icons/md";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { useState } from "react";
-import { NavLink, Link } from "react-router";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
@@ -14,14 +14,14 @@ const Navbar = () => {
             : "hover:underline underline-offset-8 decoration-[#f08b2c]";
 
     return (
-        <div className="w-full  border-b border-b-gray-250">
-            <nav className="h-16  px-6 border mx-auto max-w-7xl flex items-center justify-between lg:justify-evenly">
+        <div className="w-full border-b border-b-gray-300">
+            <nav className="h-16 px-6  mx-auto max-w-7xl flex items-center justify-between">
 
                 {/* Logo */}
                 <Link to="/"><h1 className="text-2xl font-thin">Planora</h1></Link>
 
                 {/* Desktop Nav */}
-                <div className="hidden lg:flex items-center gap-8 ">
+                <div className="hidden lg:flex items-center justify-between gap-8 ">
                     {/* Search */}
                     <div className="relative border border-gray-300">
                         <input
@@ -77,10 +77,12 @@ const Navbar = () => {
                 </button>
             </nav >
 
+
             {/* Mobile Menu */}
             {
                 openMenu && (
-                    <div className="lg:hidden absolute top-16 left-0 w-full h-full bg-gray-100 border-t z-50">
+                    <div className="lg:hidden absolute top-16 left-1/2 -translate-x-1/2 
+                w-full max-w-7xl bg-gray-100 border-t z-50">
                         <ul className="flex flex-col h-full items-center justify-center gap-6 py-6 font-thin hover:cursor-pointer">
                             <NavLink to="/" className={linkClass}>
                                 Home
@@ -98,7 +100,7 @@ const Navbar = () => {
                                 Contact
                             </NavLink>
 
-                           
+
                             <NavLink to={'/create-events'} className="bg-[#f08b2c] px-4 py-2 rounded shadow">
                                 Create Events
                             </NavLink>

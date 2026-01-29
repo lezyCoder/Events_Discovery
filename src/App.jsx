@@ -7,22 +7,37 @@ import ProtectedRoutes from "./Routes/ProtectedRoutes"
 import Navbar from "./Navbar/Navbar"
 import Footer from "./Footer/Footer"
 import Events from "./pages/Events"
+import AuthLayout from "./Layout/AuthLayout"
+import MainLayout from "./Layout/MainLayout"
+import Contact from "./pages/Contact"
+import About from "./pages/About"
+
 
 const App = () => {
 
   return (
     <div className="text-center  w-full h-screen">
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
+        <Route element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          
+          {/* Protected Routes  */}
+          <Route element={<ProtectedRoutes />} >
+            <Route path="/events" element={<Events />} />
+          </Route>
+        </Route>
 
-        {/* <Route element={<ProtectedRoutes />} > */}
-          <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Events />} />
-        {/* </Route> */}
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} /> */}
+        {/* Authentication Layout  */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

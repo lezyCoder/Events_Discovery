@@ -10,7 +10,7 @@ const fetchEvents = async () => {
     },
   });
 
-  console.log("axios response", response.data);
+  // console.log("axios response", response.data);
   return response.data;
 };
 
