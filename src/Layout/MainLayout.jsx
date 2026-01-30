@@ -9,7 +9,7 @@ const MainLayout = () => {
 
       {/* Page content */}
       <main className="flex-1">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-6">
+        <div className="mx-auto  w-full max-w-7xl px-4 sm:px-6 lg:px-6">
           <Outlet />
         </div>
       </main>
