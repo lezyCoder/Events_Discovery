@@ -2,11 +2,16 @@ import { MdSearch } from "react-icons/md";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
 
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+    console.log("isAuthenticated", isAuthenticated)
 
+    const navigate = useNavigate()
     // ========= class function for active link =============
     const linkClass = ({ isActive }) =>
         isActive
@@ -60,12 +65,15 @@ const Navbar = () => {
                     </ul>
 
                     {/* Auth */}
-                    <div className="flex gap-4">
-                        <button className="px-4 py-1 border font-thin">Login</button>
-                        <button className="px-4 py-1 bg-[#f08b2c] hover:scale-105 transition font-thin">
-                            Register
-                        </button>
-                    </div>
+                    {
+                        // ========= Based on the Authentication we will display the profile or login or logout button
+                        isAuthenticated ? <div>profile</div> : <div className="flex gap-4">
+                            <button className="px-4 py-1 border font-thin cursor-pointer" onClick={() => navigate("/login")}>Login</button>
+                            <button className="px-4 py-1 bg-[#f08b2c] hover:scale-105 transition font-thin cursor-pointer" onClick={() => navigate("/register")}>
+                                Register
+                            </button>
+                        </div>
+                    }
                 </div>
 
                 {/* Mobile Menu Button */}
