@@ -22,7 +22,7 @@ const Event_card = ({ event }) => {
 
 
                 {/* Book */}
-                <div className="border-r border-gray-300  bg-[#FFD09B] flex items-center justify-center  hover:scale-[0.987] hover:bg-[#fac280] transition-all ease-in-out hover:cursor-pointer">
+                <div className="border-r border-gray-300  bg-[#FFD09B] flex items-center justify-center  hover:scale-[0.995] hover:bg-[#fac280] transition-all ease-in-out hover:cursor-pointer">
                     Book ticket
                 </div>
 
