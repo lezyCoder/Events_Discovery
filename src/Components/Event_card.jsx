@@ -1,15 +1,16 @@
-import React from 'react'
 
-const Event_card = () => {
+const Event_card = ({ event }) => {
+
+    const { id, dates, _embedded, name } = event
     return (
-        <div className="events-card grid grid-rows-4 border max-w-72  w-full mx-auto h-84 overflow-hidden">
+        <div className="events-card grid grid-rows-4 border border-gray-300 rounded max-w-72  w-full mx-auto h-84 overflow-hidden">
 
             {/* Row 1 */}
             <div className=" border-b border-gray-300 text-sm font-medium grid grid-cols-3 items-center">
 
                 <p className="px-2">Date</p>
-                <p className="h-full border-l border-gray-300  col-span-2 ">
-                    Name of the event
+                <p className="h-full border-l border-gray-300  col-span-2 flex items-center font-thin tracking-wide ">
+                    {name}
                 </p>
             </div>
 
@@ -21,7 +22,7 @@ const Event_card = () => {
 
 
                 {/* Book */}
-                <div className="border-r border-gray-300  bg-[#f08b2c] flex items-center justify-center  hover:scale-[0.987] hover:bg-[#ea8f3a] transition ease-in-out hover:cursor-pointer">
+                <div className="border-r border-gray-300  bg-[#FFD09B] flex items-center justify-center  hover:scale-[0.987] hover:bg-[#fac280] transition-all ease-in-out hover:cursor-pointer">
                     Book ticket
                 </div>
 
@@ -50,8 +51,9 @@ const Event_card = () => {
             {/* Row 3 */}
             <div className=" text-sm  grid  grid-cols-3  overflow-hidden ">
 
+                
+                <p className="border-r border-gray-300 col-span-2 ">Venue</p>
                 <p>Details</p>
-                <p className="border-l border-gray-300 col-span-2 ">Venue</p>
             </div>
         </div>
     )

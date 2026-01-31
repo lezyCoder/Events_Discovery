@@ -11,7 +11,7 @@ const Events = () => {
     // ============= Retrieving the events from the store  ==============
     const events = useSelector(state => state.event.events);
 
-    console.log("events", events[0])
+    console.log("events", typeof events[0])
     useEffect(() => {
         dispatch(fetchlistOfEvents())
     }, [dispatch])
@@ -34,10 +34,19 @@ const Events = () => {
 
             <div className="events-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 w-full min-h-screen py-2">
                 {/* Event card here  */}
-                <Event_card />
+                {/* <Event_card event={events[0]} /> */}
+                {
+                    events && events.map((event) => {
+                        return <Event_card event={event} />
+                    })
+                }
             </div>
 
-
+            <div className="show_more m-2">
+                <button className="px-4 py-2 rounded outline-none shadow hover:scale-[0.92] transition-all duration-100 ease-in-out cursor-pointer  hover:bg- bg-[#fac280]">
+                    Show More
+                </button>
+            </div>
         </div>
     )
 }
