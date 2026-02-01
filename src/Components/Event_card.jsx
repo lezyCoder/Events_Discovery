@@ -3,12 +3,12 @@ const Event_card = ({ event }) => {
 
     const { id, dates, _embedded, name } = event
     return (
-        <div className="events-card grid grid-rows-4 border border-gray-700 rounded max-w-72  w-full mx-auto h-84 overflow-hidden">
+        <div className="events-card grid grid-rows-4  border border-gray-700 rounded max-w-72  w-full mx-auto h-84 overflow-hidden">
 
             {/* Row 1 */}
-            <div className=" border-b border-gray-700 text-sm font-medium grid grid-cols-3 items-center">
+            <div className=" border-b border-gray-700 text-sm  grid grid-cols-3 items-center">
 
-                <p className="px-2">Date</p>
+                <p className="px-2">{dates.start.localDate}</p>
                 <p className="h-full border-l border-gray-700  col-span-2 flex items-center font-thin tracking-wide ">
                     {name}
                 </p>
@@ -51,8 +51,9 @@ const Event_card = ({ event }) => {
             {/* Row 3 */}
             <div className=" text-sm  grid  grid-cols-3  overflow-hidden ">
 
-                
-                <p className="border-r border-gray-700 col-span-2 ">Venue</p>
+
+                <p className="border-r border-gray-700 col-span-2 ">
+                    venues</p>
                 <p>Details</p>
             </div>
         </div>
@@ -60,3 +61,21 @@ const Event_card = ({ event }) => {
 }
 
 export default Event_card
+
+
+
+// // function formatVenue(event) {
+//   const venue = event?._embedded?.venues?.[0];
+//   if (!venue) return "Venue information not available";
+
+//   const { name, address, city, postalCode } = venue;
+
+//   return [
+//     name,
+//     address?.line1,
+//     city?.name,
+//     postalCode
+//   ].filter(Boolean).join(", ");
+// }
+
+// console.log(formatVenue(events[0]));

@@ -9,8 +9,7 @@ const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
 
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
-    console.log("isAuthenticated", isAuthenticated)
-
+    
     const navigate = useNavigate()
     // ========= class function for active link =============
     const linkClass = ({ isActive }) =>

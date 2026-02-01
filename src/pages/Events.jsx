@@ -10,8 +10,8 @@ const Events = () => {
     const dispatch = useDispatch();
     // ============= Retrieving the events from the store  ==============
     const events = useSelector(state => state.event.events);
-
-    console.log("events", typeof events[0])
+    console.log("events", events[1])
+    // console.log("events", events[1]._embedded.venues[0].name + "  " + events[1]._embedded.venues[0].address.line1 + " " + events[0]._embedded.venues[0].city.name + " " + events[0]._embedded.venues[0].postalCode)
     useEffect(() => {
         dispatch(fetchlistOfEvents())
     }, [dispatch])

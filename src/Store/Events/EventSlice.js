@@ -13,7 +13,7 @@ export const fetchlistOfEvents = createAsyncThunk(
   // ======== payload/Data creator ============= (Payload/Data creator → creates the data inside that action)
   async () => {
     const response = await fetchEvents();
-    console.log("response data in thunk ", response._embedded.events);
+    // console.log("response data in thunk ", response._embedded.events);
     return response._embedded.events;
   },
 );
