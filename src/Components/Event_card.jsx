@@ -2,6 +2,24 @@
 const Event_card = ({ event }) => {
 
     const { id, dates, _embedded, name } = event
+
+    console.log("event",event)
+    // function formatVenue(event) {
+    //     const venue = event?._embedded.venues?.[0];
+    //     if (!venue) return "Venue information not available";
+
+    //     const { name, address, city, postalCode } = venue;
+
+    //     return [
+    //         name,
+    //         address?.line1,
+    //         city?.name,
+    //         postalCode
+    //     ].filter(Boolean).join(", ");
+    // }
+
+    // console.log(formatVenue(event[0]));
+
     return (
         <div className="events-card grid grid-rows-4  border border-gray-700 rounded max-w-72  w-full mx-auto h-84 overflow-hidden">
 
@@ -64,18 +82,3 @@ export default Event_card
 
 
 
-// // function formatVenue(event) {
-//   const venue = event?._embedded?.venues?.[0];
-//   if (!venue) return "Venue information not available";
-
-//   const { name, address, city, postalCode } = venue;
-
-//   return [
-//     name,
-//     address?.line1,
-//     city?.name,
-//     postalCode
-//   ].filter(Boolean).join(", ");
-// }
-
-// console.log(formatVenue(events[0]));
