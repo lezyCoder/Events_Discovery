@@ -18,6 +18,24 @@ const Events = () => {
 
     const category = ["Sports", "Music", "Tech", "Art", "Cultural"]
 
+
+
+    //============= Format Venue ============
+      function formatVenue(event) {
+        const venue = event?._embedded.venues?.[0];
+        if (!venue) return "Venue information not available";
+
+        const { name, address, city, postalCode } = venue;
+
+        return [
+            name,
+            address?.line1,
+            city?.name,
+            postalCode
+        ].filter(Boolean).join(", ");
+    }
+
+
     return (
         <div className="max-7wl py-2  mx-auto">
             <Hero name={"Events"} />
@@ -37,7 +55,8 @@ const Events = () => {
                 {/* <Event_card event={events[0]} /> */}
                 {
                     events && events.map((event) => {
-                        return <Event_card event={event} />
+                        
+                        return <Event_card event={event}  />
                     })
                 }
             </div>

@@ -3,25 +3,10 @@ const Event_card = ({ event }) => {
 
     const { id, dates, _embedded, name } = event
 
-    console.log("event",event)
-    // function formatVenue(event) {
-    //     const venue = event?._embedded.venues?.[0];
-    //     if (!venue) return "Venue information not available";
-
-    //     const { name, address, city, postalCode } = venue;
-
-    //     return [
-    //         name,
-    //         address?.line1,
-    //         city?.name,
-    //         postalCode
-    //     ].filter(Boolean).join(", ");
-    // }
-
-    // console.log(formatVenue(event[0]));
-
+    // console.table("details", id, dates, _embedded, name)
+    // console.log("address" , _embedded.venues[0].address.line1)
     return (
-        <div className="events-card grid grid-rows-4  border border-gray-700 rounded max-w-72  w-full mx-auto h-84 overflow-hidden">
+        <div className="events-card shadow-2xs grid grid-rows-4  border border-gray-700 rounded max-w-72  w-full mx-auto h-84 overflow-hidden">
 
             {/* Row 1 */}
             <div className=" border-b border-gray-700 text-sm  grid grid-cols-3 items-center">
@@ -71,7 +56,7 @@ const Event_card = ({ event }) => {
 
 
                 <p className="border-r border-gray-700 col-span-2 ">
-                    venues</p>
+                    venue</p>
                 <p>Details</p>
             </div>
         </div>
