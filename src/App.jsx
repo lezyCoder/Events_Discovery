@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { checkAuthState, logoutUser } from './Store/Features/auth/AuthSlice';
 import { app } from './Store/Firebase/Config';
+import EventDetails from "./pages/EventDetails"
 
 function App() {
   const dispatch = useDispatch();
@@ -43,10 +44,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          
+
           {/* Protected Routes  */}
           <Route element={<ProtectedRoutes />} >
             <Route path="/events" element={<Events />} />
+            <Route path="/events/:id" element={<EventDetails />} />
           </Route>
         </Route>
 
