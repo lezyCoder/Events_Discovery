@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux"
 import { fetchlistOfEvents } from "../Store/Events/EventSlice";
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import Hero from "../Components/Hero";
 import Event_card from "../components/Event_card";
 
@@ -31,6 +31,7 @@ const Events = () => {
     // ============= Retrieving the events from the store  ==============
     const events = useSelector(state => state.event.events);
 
+    console.log(events)
     useEffect(() => {
         dispatch(fetchlistOfEvents())
     }, [dispatch])
