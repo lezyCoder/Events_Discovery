@@ -40,7 +40,7 @@ const Event_card = ({ event }) => {
             <div className=" border-b border-gray-700 text-sm  grid grid-cols-3 items-center">
 
                 <p className="px-2">{date}</p>
-                <p className="h-full border-l border-gray-700  col-span-2 flex items-center font-thin tracking-wide ">
+                <p className="h-full border-l border-gray-700  col-span-2 flex items-center justify-center font-thin tracking-wide ">
                     {name}
                 </p>
             </div>
@@ -50,7 +50,7 @@ const Event_card = ({ event }) => {
             <div className="grid grid-cols-4 row-span-2 border-b border-gray-700 h-full">
 
                 {/* Book */}
-                <div className="border-r border-gray-700  bg-[#f19946] font-light flex items-center justify-center  hover:scale-[0.999] hover:bg-[#f08b2c] transition-all ease-in-out hover:cursor-pointer"
+                <div className="border-r border-gray-700 text-white bg-[#f19946] font-light flex items-center justify-center  hover:scale-[0.999] hover:bg-[#f08b2c] transition-all ease-in-out hover:cursor-pointer"
 
                     onClick={() => handleForward(event.id)}
                 >

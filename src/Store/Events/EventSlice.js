@@ -11,8 +11,8 @@ const initialState = {
 export const fetchlistOfEvents = createAsyncThunk(
   "/events",
   // ======== payload/Data creator ============= (Payload/Data creator → creates the data inside that action)
-  async () => {
-    const response = await fetchEvents();
+  async (page=0) => {
+    const response = await fetchEvents(page);
     // console.log("response data in thunk ", response._embedded.events);
     return response._embedded.events;
   },

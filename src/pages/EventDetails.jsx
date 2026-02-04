@@ -12,7 +12,7 @@ const EventDetails = () => {
   const imageSrc = event.images[1].url
 
   return (
-    <>
+    <div className="pt-2">
       <div
         className="relative container grid grid-cols-3 min-h-screen gap-4"
         style={{
@@ -29,7 +29,7 @@ const EventDetails = () => {
           <img
             src={imageSrc}
             alt="poster here"
-            className="object-cover shadow-lg w-84 h-84 rounded-lg"
+            className="object-contain shadow-lg w-84 rounded-lg"
           />
         </div>
 
@@ -47,7 +47,7 @@ const EventDetails = () => {
         </h1>
       </div>
       
-      </>
+    </div>
   )
 }
 export default EventDetails

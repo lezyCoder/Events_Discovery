@@ -8,6 +8,8 @@ import Event_card from "../components/Event_card";
 const Events = () => {
 
     const [showMore, setShowMore] = useState(false);
+    const [page, setPage] = useState(1)
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,15 +28,23 @@ const Events = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const dispatch = useDispatch();
 
     // ============= Retrieving the events from the store  ==============
     const events = useSelector(state => state.event.events);
+    const { isloading } = useSelector(state => state.event)
 
-    console.log(events)
+    console.log(events[1])
     useEffect(() => {
-        dispatch(fetchlistOfEvents())
+        dispatch(fetchlistOfEvents(page))
     }, [dispatch])
+
+
+    // ============ Fetching the events using show more button ============
+    const handleShowMore = () => {
+        const nextPage = page + 1
+        setPage(nextPage)
+        dispatch(fetchlistOfEvents(nextPage))
+    }
 
     const category = ["Sports", "Music", "Tech", "Art", "Cultural"]
 
@@ -65,8 +75,9 @@ const Events = () => {
 
             {
                 showMore && <div className="show_more  p-2">
-                    <button className="px-4 py-2 rounded outline-none shadow hover:scale-[0.92] transition-all duration-100 ease-in-out cursor-pointer bg-[#f19946]  hover:hover:bg-[#f08b2c] font-thin">
-                        Show More
+                    <button disabled={isloading} className={`px-4 py-2  text-white rounded outline-none shadow hover:scale-[0.92] transition-all duration-100 ease-in-out cursor-pointer bg-[#f19946]  hover:hover:bg-[#f08b2c] font-thin  ${isloading ? "opacity-50 cursor-not-allowed" : ""
+                        }`} onClick={handleShowMore}>
+                        {isloading ? "Loading..." : "Show More"}
                     </button>
                 </div>
             }
