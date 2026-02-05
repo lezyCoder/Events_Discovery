@@ -31,7 +31,7 @@ const Navbar = () => {
                         <input
                             type="text"
                             placeholder="Search events"
-                            className="outline-none px-8 py-1 w-72"
+                            className="outline-none px-8 py-1 w-96"
                         />
                         <MdSearch className="absolute left-2 top-2 text-gray-400 text-lg" />
                     </div>

@@ -8,8 +8,8 @@ const MainLayout = () => {
       <Navbar />
 
       {/* Page content */}
-      <main className="flex-1">
-        <div className="mx-auto  w-full max-w-7xl px-4 sm:px-6 lg:px-6 bg-amber-200">
+      <main className="flex-1 bg-amber-200">
+        <div className="mx-auto  w-full max-w-7xl px-4 sm:px-6 lg:px-6 ">
           <Outlet />
         </div>
       </main>
