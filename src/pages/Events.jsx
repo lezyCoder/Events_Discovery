@@ -51,12 +51,12 @@ const Events = () => {
     return (
         <div className="max-7wl py-2  mx-auto">
             <Hero name={"Events"} />
-            <div className="categories  border-b-gray-300 w-full font-mono flex px-1 py-2 justify-between items-center ">
-                <h1 className="hidden lg:block">Categories</h1>
+            <div className="categories  border-b-gray-300 w-full font-thin flex px-1 py-2 justify-between items-center ">
+                <h1 className="hidden lg:block font-mono">Categories</h1>
                 <div className="categories-links flex gap-4">
                     {
-                        category.map((name) => {
-                            return <p className="px-2 rounded-xl text-center border border-gray-700 hover:bg-[#f08b2c] transition-all duration-200 ease-in cursor-pointer">{name}</p>
+                        category.map((name,) => {
+                            return <p key={name} className="px-2  rounded-xl text-center border border-gray-700 hover:bg-[#f08b2c] transition-all duration-200 ease-in cursor-pointer ">{name}</p>
                         })
                     }
                 </div>
