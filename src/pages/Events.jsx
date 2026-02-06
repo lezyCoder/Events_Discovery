@@ -4,6 +4,7 @@ import { fetchlistOfEvents } from "../Store/Events/EventSlice";
 import { useEffect, useState } from "react";
 import Hero from "../Components/Hero";
 import Event_card from "../components/Event_card";
+import {fetchlistOfEventsBySegment} from "../Store/Events/EventSlice"
 
 const Events = () => {
 
@@ -33,7 +34,7 @@ const Events = () => {
     const events = useSelector(state => state.event.events);
     const { isloading } = useSelector(state => state.event)
 
-    console.log(events[1])
+    console.log(events)
     useEffect(() => {
         dispatch(fetchlistOfEvents(page))
     }, [dispatch])
@@ -46,7 +47,13 @@ const Events = () => {
         dispatch(fetchlistOfEvents(nextPage))
     }
 
-    const category = ["Sports", "Music", "Tech", "Art", "Cultural"]
+    const category = [
+        { label: "Music", segmentId: "KZFzniwnSyZfZ7v7nJ" },
+        { label: "Sports", segmentId: "KZFzniwnSyZfZ7v7nE" },
+        { label: "Arts & Theatre", segmentId: "KZFzniwnSyZfZ7v7na" },
+        { label: "Film", segmentId: "KZFzniwnSyZfZ7v7nn" },
+        { label: "Misc", segmentId: "KZFzniwnSyZfZ7v7n1" },
+    ];
 
     return (
         <div className="max-7wl py-2  mx-auto">
@@ -55,8 +62,9 @@ const Events = () => {
                 <h1 className="hidden lg:block font-mono">Categories</h1>
                 <div className="categories-links flex gap-4">
                     {
-                        category.map((name,) => {
-                            return <p key={name} className="px-2  rounded-xl text-center border border-gray-700 hover:bg-[#f08b2c] transition-all duration-200 ease-in cursor-pointer ">{name}</p>
+                        category.map(({ label, segmentId }) => {
+                            return <p key={label} className="px-2  rounded-xl text-center border border-gray-700 hover:bg-[#f08b2c] transition-all duration-200 ease-in cursor-pointer "
+                                onClick={() => dispatch(fetchlistOfEventsBySegment({page, segmentId}))}>{label}</p>
                         })
                     }
                 </div>
