@@ -32,7 +32,7 @@ export const fetchEventsBySegment = async (page, id) => {
       },
     },
   );
-
+  console.log("segment", response);
   return response.data;
 };
 

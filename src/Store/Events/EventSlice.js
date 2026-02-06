@@ -21,7 +21,7 @@ export const fetchlistOfEvents = createAsyncThunk(
 
 //============ Creating Thunk for Events Fetching using Segment ================
 export const fetchlistOfEventsBySegment = createAsyncThunk(
-  "/events",
+  "/events/fetchBysegment",
   // ======== payload/Data creator ============= (Payload/Data creator → creates the data inside that action)
   async ({ page, segmentId }, thunkAPI) => {
     try {
@@ -46,12 +46,25 @@ export const eventSlice = createSlice({
       })
       .addCase(fetchlistOfEvents.fulfilled, (state, action) => {
         state.isloading = false;
-        state.events = action.payload;
+        state.events = [...state.events, ...action.payload] // when we presss the show more it will show previous as well as the new content 
       })
       .addCase(fetchlistOfEvents.rejected, (state, action) => {
         state.isloading = false;
-        state.error = action.error.message;
+         state.error = action.payload || action.error.message;
       });
+
+    // ========= builder for segment fetching ===========
+    builder.addCase(fetchlistOfEventsBySegment.pending, (state, action) => {
+      state.isloading = true;
+    });
+    builder.addCase(fetchlistOfEventsBySegment.fulfilled, (state, action) => {
+      ((state.isloading = false),
+       (state.events = action.payload));
+    });
+    builder.addCase(fetchlistOfEventsBySegment.rejected, (state, action) => {
+       state.error = action.payload || action.error.message;
+      state.isloading = false;
+    });
   },
 });
 
