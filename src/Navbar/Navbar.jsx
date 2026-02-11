@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { logoutFirebase } from "../Store/Features/auth/AuthService";
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
@@ -16,6 +17,17 @@ const Navbar = () => {
         isActive
             ? "underline underline-offset-8 decoration-[#f08b2c]"
             : "hover:underline underline-offset-8 decoration-[#f08b2c]";
+
+
+
+    //=========== Logout User ==================
+    const signOutUser = async () => {
+        await logoutFirebase()
+        navigate("/login")
+    }
+
+
+
 
     return (
         <div className="w-full border-b border-b-gray-300">
@@ -72,7 +84,7 @@ const Navbar = () => {
 
                             <div
                                 className={`
-                             absolute right-4 mt-2 w-48 rounded-2xl bg-white border shadow-lg
+                             absolute right-4 mt-4 w-48 rounded-2xl bg-white  shadow-lg
                               transition-all duration-200 ease-out cursor-pointer
                                  origin-top-right
                                  ${openMenu
@@ -84,7 +96,7 @@ const Navbar = () => {
                                 <p className="p-2 hover:bg-gray-100 rounded-t-2xl">Profile</p>
                                 <p className="p-2 hover:bg-gray-100">Events</p>
                                 <p className="p-2 hover:bg-gray-100">Favourite</p>
-                                <p className="p-2 text-red-600 hover:bg-gray-100 rounded-b-2xl">
+                                <p className="p-2 text-red-600 hover:bg-gray-100 rounded-b-2xl" onClick={signOutUser}>
                                     Sign Out
                                 </p>
                             </div>
