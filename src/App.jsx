@@ -10,6 +10,7 @@ import Events from "./pages/Events"
 import AuthLayout from "./Layout/AuthLayout"
 import MainLayout from "./Layout/MainLayout"
 import Contact from "./pages/Contact"
+import BookingPage from "./pages/BookingPage"
 import About from "./pages/About"
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -49,6 +50,7 @@ function App() {
           <Route element={<ProtectedRoutes />} >
             <Route path="/events" element={<Events />} />
             <Route path="/events/:id" element={<EventDetails />} />
+            <Route path = "/booking-details" element={<BookingPage/>}/>
           </Route>
         </Route>
 

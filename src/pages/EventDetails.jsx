@@ -1,5 +1,6 @@
 import { useParams } from "react-router"
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router"
 
 const EventDetails = () => {
   const { id } = useParams()
@@ -11,6 +12,7 @@ const EventDetails = () => {
   const title = event.name
   const imageSrc = event.images[1].url
 
+  const navigate = useNavigate();
   return (
     <div className="pt-2">
       <div
@@ -34,10 +36,10 @@ const EventDetails = () => {
         </div>
 
         <div className="relative col-span-2 right text-left flex flex-col justify-center  gap-8 text-3xl font-thin p-2 w-full">
-            <p className="tracking-wider text-white">{title}</p>
-            <button className="px-4 py-2 text-sm rounded bg-[#f08b2c] text-white font-thin w-40 hover:bg-[#df8633] transition duration-200 hover:scale-[0.99] cursor-pointer">
-              Book Ticket
-            </button>
+          <p className="tracking-wider text-white">{title}</p>
+          <button className="px-4 py-2 text-sm rounded bg-[#f08b2c] text-white font-thin w-40 hover:bg-[#df8633] transition duration-200 hover:scale-[0.99] cursor-pointer" onClick={()=>navigate("/booking-details")}>
+            Book Ticket
+          </button>
         </div>
       </div>
 
