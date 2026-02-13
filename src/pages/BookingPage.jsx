@@ -3,8 +3,8 @@
 
 const BookingPage = () => {
     return (
-        <div>
-            Booking Page
+        <div className="flex items-center justify-center">
+            Booking details
         </div>
     )
 }
